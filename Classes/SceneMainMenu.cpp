@@ -46,6 +46,57 @@ bool SceneMainMenu::init(){
 
     this->addChild( bg, -1 );
 
+    // create main menu
+
+    auto menu = Menu::create();
+
+    menu->setPosition( { scr_origin.x + scr_size.width/2.0f,
+                scr_origin.y + scr_size.height/2.0f } );
+
+
+    auto menu_label = Label::createWithTTF( "Test 1", "fonts/gentium.ttf", 48);
+    auto menu_item = MenuItemLabel::create( menu_label,
+                                            std::bind( &SceneMainMenu::menu1,
+                                                       this,
+                                                       std::placeholders::_1) );
+    menu->addChild( menu_item );
+
+    menu_label = Label::createWithTTF( "Test 2", "fonts/gentium.ttf", 48);
+    menu_item = MenuItemLabel::create( menu_label,
+                                       std::bind( &SceneMainMenu::menu2,
+                                                  this,
+                                                  std::placeholders::_1) );
+
+    menu->addChild( menu_item );
+
+    menu_label = Label::createWithTTF( "Test 3", "fonts/gentium.ttf", 48);
+    menu_item = MenuItemLabel::create( menu_label,
+                                       std::bind( &SceneMainMenu::menu3,
+                                                  this,
+                                                  std::placeholders::_1) );
+
+    menu->addChild( menu_item );
+
+    menu_label = Label::createWithTTF( "Test 4", "fonts/gentium.ttf", 48);
+    menu_item = MenuItemLabel::create( menu_label,
+                                       std::bind( &SceneMainMenu::menu4,
+                                                  this,
+                                                  std::placeholders::_1) );
+
+    menu->addChild( menu_item );
+
+    menu_label = Label::createWithTTF( "Test 5", "fonts/gentium.ttf", 48);
+    menu_item = MenuItemLabel::create( menu_label,
+                                       std::bind( &SceneMainMenu::menu5,
+                                                  this,
+                                                  std::placeholders::_1) );
+
+    menu->addChild( menu_item );
+
+    menu->alignItemsVerticallyWithPadding( 20.0f );
+
+    this->addChild( menu, 1 );
+
     return true;
 }
 
@@ -54,6 +105,31 @@ void SceneMainMenu::onEnter(){
     Node::onEnter();
 
     printf( "SceneMainMenu::onEnter\n" );
+}
+
+//--------------------------------------------------------------------
+void SceneMainMenu::menu1( Ref * sender ){
+    printf( "SceneMainMenu::menu1\n" );
+}
+
+//--------------------------------------------------------------------
+void SceneMainMenu::menu2( Ref * sender ){
+    printf( "SceneMainMenu::menu2\n" );
+}
+
+//--------------------------------------------------------------------
+void SceneMainMenu::menu3( Ref * sender ){
+    printf( "SceneMainMenu::menu3\n" );
+}
+
+//--------------------------------------------------------------------
+void SceneMainMenu::menu4( Ref * sender ){
+    printf( "SceneMainMenu::menu4\n" );
+}
+
+//--------------------------------------------------------------------
+void SceneMainMenu::menu5( Ref * sender ){
+    printf( "SceneMainMenu::menu5\n" );
 }
 
 //--------------------------------------------------------------------

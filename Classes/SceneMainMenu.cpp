@@ -24,9 +24,16 @@ bool SceneMainMenu::init(){
 
     printf( "SceneMainMenu::init\n" );
 
-    auto label = Label::createWithTTF( "Main Menu", "fonts/gentium.ttf", 24 );
+    auto scr_size = Director::getInstance()->getVisibleSize();
+    auto scr_origin = Director::getInstance()->getVisibleOrigin();
 
-    label->setPosition( { 500, 500 } );
+    auto label = Label::createWithTTF( "Main Menu", "fonts/gentium.ttf", 24 );
+    auto label_size = label->getContentSize();
+
+    label->setPosition( {
+            scr_origin.x + label_size.width/2.0f + 10.0f,
+                scr_origin.y + scr_size.height
+                - label_size.height/2.0f - 10.0f} );
 
     this->addChild( label, 3 );
 

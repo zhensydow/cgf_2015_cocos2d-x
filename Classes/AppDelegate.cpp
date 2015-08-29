@@ -35,10 +35,11 @@ bool AppDelegate::applicationDidFinishLaunching() {
     auto director = Director::getInstance();
     auto glview = director->getOpenGLView();
     if(!glview) {
-        glview = GLViewImpl::create("My Game");
+        glview = GLViewImpl::create( "Curso 2015" );
+        //glview = GLViewImpl::createWithFullScreen( "Curso 2015" );
         director->setOpenGLView(glview);
     }
-
+    //glview->setFrameSize( 800, 600 );
     glview->setDesignResolutionSize( 800, 600, ResolutionPolicy::SHOW_ALL );
 
     // turn on display FPS

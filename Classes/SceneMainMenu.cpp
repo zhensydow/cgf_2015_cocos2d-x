@@ -1,5 +1,6 @@
 #include "SceneMainMenu.hpp"
-#include <iostream>
+#include <cstdio>
+#include "SceneInput.hpp"
 
 //--------------------------------------------------------------------
 using namespace cocos2d;
@@ -54,7 +55,7 @@ bool SceneMainMenu::init(){
                 scr_origin.y + scr_size.height/2.0f } );
 
 
-    auto menu_label = Label::createWithTTF( "Test 1", "fonts/gentium.ttf", 48);
+    auto menu_label = Label::createWithTTF( "Input", "fonts/gentium.ttf", 48);
     auto menu_item = MenuItemLabel::create( menu_label,
                                             std::bind( &SceneMainMenu::menu1,
                                                        this,
@@ -110,6 +111,10 @@ void SceneMainMenu::onEnter(){
 //--------------------------------------------------------------------
 void SceneMainMenu::menu1( Ref * sender ){
     printf( "SceneMainMenu::menu1\n" );
+
+    auto scene = SceneInput::createScene();
+    Director::getInstance()->pushScene( scene );
+    //Director::getInstance()->replaceScene( scene );
 }
 
 //--------------------------------------------------------------------

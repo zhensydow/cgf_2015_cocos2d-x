@@ -14,6 +14,10 @@ public:
     CREATE_FUNC(SceneInput);
 
 private:
+    cocos2d::Label * m_key;
+    cocos2d::Label * m_button;
+    cocos2d::Label * m_pos;
+
 };
 
 

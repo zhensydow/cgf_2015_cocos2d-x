@@ -38,6 +38,22 @@ bool SceneInput::init(){
 
     this->addChild( label, 3 );
 
+    // create message labels
+    m_key = Label::createWithTTF( "key", "fonts/gentium.ttf", 24 );
+    m_key->setPosition( {scr_origin.x + 100.0f, scr_origin.y + 400.0f } );
+
+    this->addChild( m_key, 2 );
+
+    m_button = Label::createWithTTF( "mouse button", "fonts/gentium.ttf", 24 );
+    m_button->setPosition( {scr_origin.x + 100.0f, scr_origin.y + 350.0f } );
+
+    this->addChild( m_button, 2 );
+
+    m_pos = Label::createWithTTF( "mouse button", "fonts/gentium.ttf", 24 );
+    m_pos->setPosition( {scr_origin.x + 100.0f, scr_origin.y + 300.0f } );
+
+    this->addChild( m_pos, 2 );
+
     return true;
 }
 

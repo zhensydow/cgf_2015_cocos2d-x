@@ -116,21 +116,21 @@ void SceneInput::onEnter(){
 }
 
 //--------------------------------------------------------------------
-void SceneInput::onKeyPressed( cocos2d::EventKeyboard::KeyCode code,
-                               cocos2d::Event* event )
-{
+void SceneInput::onKeyPressed( EventKeyboard::KeyCode code, Event* event ){
     m_key->setString( "Key Pressed: " + std::to_string((int)code) );
+
+    if( code == EventKeyboard::KeyCode::KEY_ESCAPE ){
+        Director::getInstance()->popScene();
+    }
 }
 
 //--------------------------------------------------------------------
-void SceneInput::onKeyReleased( cocos2d::EventKeyboard::KeyCode code,
-                                cocos2d::Event* event )
-{
+void SceneInput::onKeyReleased( EventKeyboard::KeyCode code, Event* event ){
     m_key->setString( "Key Released: " + std::to_string((int)code) );
 }
 
 //--------------------------------------------------------------------
-bool SceneInput::onTouchBegan( cocos2d::Touch* touch, cocos2d::Event* event ){
+bool SceneInput::onTouchBegan( Touch* touch, Event* event ){
     auto pos = touch->getLocation();
     m_key->setString( "Touch Began: " + std::to_string((int)pos.x) + ", " +
                       std::to_string((int)pos.y));
@@ -138,7 +138,7 @@ bool SceneInput::onTouchBegan( cocos2d::Touch* touch, cocos2d::Event* event ){
 }
 
 //--------------------------------------------------------------------
-void SceneInput::onTouchEnded( cocos2d::Touch* touch, cocos2d::Event* event ){
+void SceneInput::onTouchEnded( Touch* touch, Event* event ){
     auto pos = touch->getLocation();
     m_key->setString( "Touch Ended: " + std::to_string((int)pos.x) + ", " +
                       std::to_string((int)pos.y));

@@ -15,7 +15,11 @@ public:
 
     CREATE_FUNC(SceneSprites);
 
+    void onKeyReleased( cocos2d::EventKeyboard::KeyCode code,
+                        cocos2d::Event* event );
+
 private:
+    cocos2d::EventListenerKeyboard* m_keybd;
 
 };
 

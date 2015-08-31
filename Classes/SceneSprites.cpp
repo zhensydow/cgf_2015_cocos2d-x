@@ -18,11 +18,13 @@ SceneSprites::createScene(){
 
 //--------------------------------------------------------------------------
 SceneSprites::~SceneSprites(){
-    // empty
+    _eventDispatcher->removeEventListener( m_keybd );
 }
 
 //--------------------------------------------------------------------
 bool SceneSprites::init(){
+    using namespace std::placeholders;
+
     if( !Node::init() ){
         return false;
     }
@@ -43,6 +45,13 @@ bool SceneSprites::init(){
 
     this->addChild( label, 3 );
 
+    // setup input listeners
+    m_keybd = EventListenerKeyboard::create();
+    m_keybd->onKeyReleased = std::bind( &SceneSprites::onKeyReleased,
+                                        this, _1, _2 );
+    _eventDispatcher->addEventListenerWithSceneGraphPriority( m_keybd, this );
+
+    return true;
 }
 
 //--------------------------------------------------------------------
@@ -50,6 +59,13 @@ void SceneSprites::onEnter(){
     Node::onEnter();
 
     printf( "SceneSprites::onEnter\n" );
+}
+
+//--------------------------------------------------------------------
+void SceneSprites::onKeyReleased( EventKeyboard::KeyCode code, Event* event ){
+    if( code == EventKeyboard::KeyCode::KEY_ESCAPE ){
+        Director::getInstance()->popScene();
+    }
 }
 
 //--------------------------------------------------------------------

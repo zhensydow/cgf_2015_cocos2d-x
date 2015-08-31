@@ -19,6 +19,7 @@ SceneSprites::createScene(){
 //--------------------------------------------------------------------------
 SceneSprites::~SceneSprites(){
     _eventDispatcher->removeEventListener( m_keybd );
+    _eventDispatcher->removeEventListener( m_mouse );
 }
 
 //--------------------------------------------------------------------
@@ -50,6 +51,11 @@ bool SceneSprites::init(){
     m_keybd->onKeyReleased = std::bind( &SceneSprites::onKeyReleased,
                                         this, _1, _2 );
     _eventDispatcher->addEventListenerWithSceneGraphPriority( m_keybd, this );
+
+    m_mouse = EventListenerMouse::create();
+    m_mouse->onMouseMove = std::bind( &SceneSprites::onMouseMove,
+                                      this, _1 );
+    _eventDispatcher->addEventListenerWithSceneGraphPriority( m_mouse, this );
 
     // create sprites
     auto button1 = Sprite::create( "button01.png" );
@@ -98,12 +104,12 @@ bool SceneSprites::init(){
     coin1->setPosition( {0.0f ,50.0f} );
     this->addChild( m_mario3, 1 );
 
-    auto link1 = Sprite::create( "link01.png" );
+    m_link1 = Sprite::create( "link01.png" );
 
-    link1->setPosition( { scr_origin.x + 100.0f,
+    m_link1->setPosition( { scr_origin.x + 100.0f,
                 scr_origin.y + 150.0f } );
 
-    this->addChild( link1, 1 );
+    this->addChild( m_link1, 1 );
 
     m_link2 = Sprite::create( "link01.png" );
 
@@ -207,6 +213,18 @@ void SceneSprites::onKeyReleased( EventKeyboard::KeyCode code, Event* event ){
     }else if( code == EventKeyboard::KeyCode::KEY_B ){
         glClearColor( 1.0, 1.0, 1.0, 1.0 );
     }
+
+}
+
+//--------------------------------------------------------------------
+void SceneSprites::onMouseMove( Event *event ){
+    EventMouse* e = (EventMouse*)event;
+
+    auto pos = e->getLocationInView();
+    auto move = MoveTo::create( 1.0f, pos );
+
+    m_link1->stopAllActions();
+    m_link1->runAction( EaseOut::create( move, 2.0f ) );
 
 }
 

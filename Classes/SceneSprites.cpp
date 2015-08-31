@@ -119,11 +119,28 @@ bool SceneSprites::init(){
     m_link3->setScale( 4.0f );
     this->addChild( m_link3, 1 );
 
+    Vector<SpriteFrame*> link_frames;
+    link_frames.reserve( 5*5 );
+    for( int j = 0 ; j < 5 ; ++j ){
+        for( int i = 0 ; i < 5 ; ++i ){
+            auto frame = SpriteFrame::create( "anim_01_0.png",
+                                              { i*115.0f, j*296.0f,
+                                                      115.0f, 296.0f } );
+            link_frames.pushBack( frame );
+        }
+    }
+
     auto link1b = Sprite::create( "anim_01_0.png",
                                   { 0.0f, 0.0f, 115.0f, 296.0f } );
 
+    auto link_animation = Animation::createWithSpriteFrames( link_frames,
+                                                             1.0f / 25.0f );
+
     link1b->setPosition( { scr_origin.x + 650.0f,
                 scr_origin.y + 300.0f } );
+
+    auto action = Animate::create( link_animation );
+    link1b->runAction( RepeatForever::create( action ) );
 
     this->addChild( link1b, 1 );
 
@@ -142,6 +159,7 @@ void SceneSprites::onKeyReleased( EventKeyboard::KeyCode code, Event* event ){
     auto scr_origin = Director::getInstance()->getVisibleOrigin();
 
     if( code == EventKeyboard::KeyCode::KEY_ESCAPE ){
+        glClearColor( 0.0, 0.0, 0.0, 1.0 );
         Director::getInstance()->popScene();
     }else if( code == EventKeyboard::KeyCode::KEY_1 ){
 
@@ -186,6 +204,8 @@ void SceneSprites::onKeyReleased( EventKeyboard::KeyCode code, Event* event ){
         m_button2->runAction( seq1 );
         m_button3->runAction( seq2 );
 
+    }else if( code == EventKeyboard::KeyCode::KEY_B ){
+        glClearColor( 1.0, 1.0, 1.0, 1.0 );
     }
 
 }

@@ -73,6 +73,14 @@ bool SceneSprites::init(){
 
     this->addChild( link1, 1 );
 
+    auto link1b = Sprite::create( "anim_01_0.png",
+                                  { 0.0f, 0.0f, 115.0f, 296.0f } );
+
+    link1b->setPosition( { scr_origin.x + 650.0f,
+                scr_origin.y + 300.0f } );
+
+    this->addChild( link1b, 1 );
+
     return true;
 }
 

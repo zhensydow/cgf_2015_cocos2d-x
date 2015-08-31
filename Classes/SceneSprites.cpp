@@ -59,6 +59,20 @@ bool SceneSprites::init(){
 
     this->addChild( button1, 1 );
 
+    auto button2 = Sprite::create( "button01.png" );
+
+    button2->setPosition( { scr_origin.x + 250.0f,
+                scr_origin.y + 450.0f } );
+    button2->setColor( {0,255,0} );
+    this->addChild( button2, 1 );
+
+    auto button3 = Sprite::create( "button01.png" );
+
+    button3->setPosition( { scr_origin.x + 400.0f,
+                scr_origin.y + 450.0f } );
+    button3->setColor( {0,0,255} );
+    this->addChild( button3, 1 );
+
     auto mario1 = Sprite::create( "mario01.png" );
 
     mario1->setPosition( { scr_origin.x + 100.0f,
@@ -66,12 +80,40 @@ bool SceneSprites::init(){
 
     this->addChild( mario1, 1 );
 
+    auto mario2 = Sprite::create( "mario01.png" );
+
+    mario2->setPosition( { scr_origin.x + 250.0f,
+                scr_origin.y + 300.0f } );
+    mario2->setScaleX( -1.0f );
+    this->addChild( mario2, 1 );
+
+    auto mario3 = Sprite::create( "mario01.png" );
+
+    mario3->setPosition( { scr_origin.x + 400.0f,
+                scr_origin.y + 300.0f } );
+    mario3->setRotation( 50.0f );
+    this->addChild( mario3, 1 );
+
     auto link1 = Sprite::create( "link01.png" );
 
     link1->setPosition( { scr_origin.x + 100.0f,
                 scr_origin.y + 150.0f } );
 
     this->addChild( link1, 1 );
+
+    auto link2 = Sprite::create( "link01.png" );
+
+    link2->setPosition( { scr_origin.x + 250.0f,
+                scr_origin.y + 150.0f } );
+    link2->setScale( 2.0f );
+    this->addChild( link2, 1 );
+
+    auto link3 = Sprite::create( "link01.png" );
+
+    link3->setPosition( { scr_origin.x + 400.0f,
+                scr_origin.y + 150.0f } );
+    link3->setScale( 4.0f );
+    this->addChild( link3, 1 );
 
     auto link1b = Sprite::create( "anim_01_0.png",
                                   { 0.0f, 0.0f, 115.0f, 296.0f } );

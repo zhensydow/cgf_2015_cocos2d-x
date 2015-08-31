@@ -119,6 +119,7 @@ set(GAME_SRC
   Classes/SceneMainMenu.cpp
   Classes/SceneInput.cpp
   Classes/SceneSprites.cpp
+  Classes/SceneBall.cpp
   ${PLATFORM_SPECIFIC_SRC}
 )
 
@@ -128,6 +129,7 @@ set(GAME_HEADERS
   Classes/SceneMainMenu.hpp
   Classes/SceneInput.hpp
   Classes/SceneSprites.hpp
+  Classes/SceneBall.hpp
   ${PLATFORM_SPECIFIC_HEADERS}
 )
 

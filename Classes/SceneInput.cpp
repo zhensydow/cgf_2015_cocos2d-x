@@ -112,7 +112,7 @@ bool SceneInput::init(){
 void SceneInput::onEnter(){
     Node::onEnter();
 
-    printf( "SceneMainMenu::onEnter\n" );
+    printf( "SceneInput::onEnter\n" );
 }
 
 //--------------------------------------------------------------------

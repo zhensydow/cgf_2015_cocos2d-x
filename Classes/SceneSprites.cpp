@@ -29,6 +29,20 @@ bool SceneSprites::init(){
 
     printf( "SceneSprites::init\n" );
 
+    auto scr_size = Director::getInstance()->getVisibleSize();
+    auto scr_origin = Director::getInstance()->getVisibleOrigin();
+
+    // create a debug name
+    auto label = Label::createWithTTF( "Sprites", "fonts/gentium.ttf", 24 );
+    auto label_size = label->getContentSize();
+
+    label->setPosition( {
+            scr_origin.x + label_size.width/2.0f + 10.0f,
+                scr_origin.y + scr_size.height
+                - label_size.height/2.0f - 10.0f} );
+
+    this->addChild( label, 3 );
+
 }
 
 //--------------------------------------------------------------------

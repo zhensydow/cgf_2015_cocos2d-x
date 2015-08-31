@@ -59,19 +59,19 @@ bool SceneSprites::init(){
 
     this->addChild( button1, 1 );
 
-    auto button2 = Sprite::create( "button01.png" );
+    m_button2 = Sprite::create( "button01.png" );
 
-    button2->setPosition( { scr_origin.x + 250.0f,
+    m_button2->setPosition( { scr_origin.x + 250.0f,
                 scr_origin.y + 450.0f } );
-    button2->setColor( {0,255,0} );
-    this->addChild( button2, 1 );
+    m_button2->setColor( {0,255,0} );
+    this->addChild( m_button2, 2 );
 
-    auto button3 = Sprite::create( "button01.png" );
+    m_button3 = Sprite::create( "button01.png" );
 
-    button3->setPosition( { scr_origin.x + 400.0f,
+    m_button3->setPosition( { scr_origin.x + 400.0f,
                 scr_origin.y + 450.0f } );
-    button3->setColor( {0,0,255} );
-    this->addChild( button3, 1 );
+    m_button3->setColor( {0,0,255} );
+    this->addChild( m_button3, 2 );
 
     auto mario1 = Sprite::create( "mario01.png" );
 
@@ -87,12 +87,12 @@ bool SceneSprites::init(){
     mario2->setScaleX( -1.0f );
     this->addChild( mario2, 1 );
 
-    auto mario3 = Sprite::create( "mario01.png" );
+    m_mario3 = Sprite::create( "mario01.png" );
 
-    mario3->setPosition( { scr_origin.x + 400.0f,
+    m_mario3->setPosition( { scr_origin.x + 400.0f,
                 scr_origin.y + 300.0f } );
-    mario3->setRotation( 50.0f );
-    this->addChild( mario3, 1 );
+    m_mario3->setRotation( 50.0f );
+    this->addChild( m_mario3, 1 );
 
     auto link1 = Sprite::create( "link01.png" );
 
@@ -101,19 +101,19 @@ bool SceneSprites::init(){
 
     this->addChild( link1, 1 );
 
-    auto link2 = Sprite::create( "link01.png" );
+    m_link2 = Sprite::create( "link01.png" );
 
-    link2->setPosition( { scr_origin.x + 250.0f,
+    m_link2->setPosition( { scr_origin.x + 250.0f,
                 scr_origin.y + 150.0f } );
-    link2->setScale( 2.0f );
-    this->addChild( link2, 1 );
+    m_link2->setScale( 2.0f );
+    this->addChild( m_link2, 1 );
 
-    auto link3 = Sprite::create( "link01.png" );
+    m_link3 = Sprite::create( "link01.png" );
 
-    link3->setPosition( { scr_origin.x + 400.0f,
+    m_link3->setPosition( { scr_origin.x + 400.0f,
                 scr_origin.y + 150.0f } );
-    link3->setScale( 4.0f );
-    this->addChild( link3, 1 );
+    m_link3->setScale( 4.0f );
+    this->addChild( m_link3, 1 );
 
     auto link1b = Sprite::create( "anim_01_0.png",
                                   { 0.0f, 0.0f, 115.0f, 296.0f } );
@@ -135,9 +135,55 @@ void SceneSprites::onEnter(){
 
 //--------------------------------------------------------------------
 void SceneSprites::onKeyReleased( EventKeyboard::KeyCode code, Event* event ){
+    auto scr_origin = Director::getInstance()->getVisibleOrigin();
+
     if( code == EventKeyboard::KeyCode::KEY_ESCAPE ){
         Director::getInstance()->popScene();
+    }else if( code == EventKeyboard::KeyCode::KEY_1 ){
+
+        auto move = MoveBy::create( 0.5, {0, 50} );
+        m_link2->runAction( move );
+
+    }else if( code == EventKeyboard::KeyCode::KEY_2 ){
+
+        auto move1 = MoveBy::create( 0.5, {100, 0} );
+        auto move2 = MoveBy::create( 0.4, {0, -50} );
+        auto move3 = MoveBy::create( 0.3, {-100, 0} );
+        auto move4 = MoveBy::create( 0.2, {0, 50} );
+
+        auto seq = Sequence::create( move1, move2, move3, move4, nullptr );
+
+        m_link3->runAction( seq );
+
+    }else if( code == EventKeyboard::KeyCode::KEY_3 ){
+
+        auto move = MoveTo::create( 0.5, { scr_origin.x + 250.0f,
+                    scr_origin.y + 150.0f } );
+        m_link2->runAction( move );
+
+    }else if( code == EventKeyboard::KeyCode::KEY_4 ){
+
+        auto move = MoveBy::create( 0.5f, {100, 0} );
+        auto disp = FadeOut::create( 0.5f );
+
+        m_mario3->runAction( move );
+        m_mario3->runAction( disp );
+
+    }else if( code == EventKeyboard::KeyCode::KEY_5 ){
+
+        auto move_simple = MoveBy::create( 1.0f, {0,-300} );
+        auto move_simple_rv = move_simple->reverse();
+        auto move_ease = EaseInOut::create( move_simple->clone(), 2.0f );
+        auto move_ease_rv = move_ease->reverse();
+
+        auto seq1 = Sequence::create( move_simple, move_simple_rv, nullptr );
+        auto seq2 = Sequence::create( move_ease, move_ease_rv, nullptr );
+
+        m_button2->runAction( seq1 );
+        m_button3->runAction( seq2 );
+
     }
+
 }
 
 //--------------------------------------------------------------------

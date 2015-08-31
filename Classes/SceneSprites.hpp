@@ -21,6 +21,11 @@ public:
 private:
     cocos2d::EventListenerKeyboard* m_keybd;
 
+    cocos2d::Sprite * m_button2;
+    cocos2d::Sprite * m_button3;
+    cocos2d::Sprite * m_link2;
+    cocos2d::Sprite * m_link3;
+    cocos2d::Sprite * m_mario3;
 };
 
 //------------------------------------------------------------------------------

@@ -1,6 +1,7 @@
 #include "SceneMainMenu.hpp"
 #include <cstdio>
 #include "SceneInput.hpp"
+#include "SceneSprites.hpp"
 
 //--------------------------------------------------------------------
 using namespace cocos2d;
@@ -19,6 +20,8 @@ SceneMainMenu::createScene(){
 
 //--------------------------------------------------------------------
 bool SceneMainMenu::init(){
+    using namespace std::placeholders;
+
     if( !Node::init() ){
         return false;
     }
@@ -58,39 +61,34 @@ bool SceneMainMenu::init(){
     auto menu_label = Label::createWithTTF( "Input", "fonts/gentium.ttf", 48);
     auto menu_item = MenuItemLabel::create( menu_label,
                                             std::bind( &SceneMainMenu::menu1,
-                                                       this,
-                                                       std::placeholders::_1) );
+                                                       this, _1 ) );
     menu->addChild( menu_item );
 
-    menu_label = Label::createWithTTF( "Test 2", "fonts/gentium.ttf", 48);
+    menu_label = Label::createWithTTF( "Sprites", "fonts/gentium.ttf", 48);
     menu_item = MenuItemLabel::create( menu_label,
                                        std::bind( &SceneMainMenu::menu2,
-                                                  this,
-                                                  std::placeholders::_1) );
+                                                  this, _1 ) );
 
     menu->addChild( menu_item );
 
     menu_label = Label::createWithTTF( "Test 3", "fonts/gentium.ttf", 48);
     menu_item = MenuItemLabel::create( menu_label,
                                        std::bind( &SceneMainMenu::menu3,
-                                                  this,
-                                                  std::placeholders::_1) );
+                                                  this, _1 ) );
 
     menu->addChild( menu_item );
 
     menu_label = Label::createWithTTF( "Test 4", "fonts/gentium.ttf", 48);
     menu_item = MenuItemLabel::create( menu_label,
                                        std::bind( &SceneMainMenu::menu4,
-                                                  this,
-                                                  std::placeholders::_1) );
+                                                  this, _1 ) );
 
     menu->addChild( menu_item );
 
     menu_label = Label::createWithTTF( "Test 5", "fonts/gentium.ttf", 48);
     menu_item = MenuItemLabel::create( menu_label,
                                        std::bind( &SceneMainMenu::menu5,
-                                                  this,
-                                                  std::placeholders::_1) );
+                                                  this, _1 ) );
 
     menu->addChild( menu_item );
 
@@ -120,6 +118,9 @@ void SceneMainMenu::menu1( Ref * sender ){
 //--------------------------------------------------------------------
 void SceneMainMenu::menu2( Ref * sender ){
     printf( "SceneMainMenu::menu2\n" );
+
+    auto scene = SceneSprites::createScene();
+    Director::getInstance()->pushScene( scene );
 }
 
 //--------------------------------------------------------------------

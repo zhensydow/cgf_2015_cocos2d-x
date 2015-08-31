@@ -53,17 +53,19 @@ bool SceneSprites::init(){
     _eventDispatcher->addEventListenerWithSceneGraphPriority( m_keybd, this );
 
     m_mouse = EventListenerMouse::create();
+    m_mouse->onMouseUp = std::bind( &SceneSprites::onMouseUp,
+                                    this, _1 );
     m_mouse->onMouseMove = std::bind( &SceneSprites::onMouseMove,
                                       this, _1 );
     _eventDispatcher->addEventListenerWithSceneGraphPriority( m_mouse, this );
 
     // create sprites
-    auto button1 = Sprite::create( "button01.png" );
+    m_button1 = Sprite::create( "button01.png" );
 
-    button1->setPosition( { scr_origin.x + 100.0f,
+    m_button1->setPosition( { scr_origin.x + 100.0f,
                 scr_origin.y + 450.0f } );
 
-    this->addChild( button1, 1 );
+    this->addChild( m_button1, 1 );
 
     m_button2 = Sprite::create( "button01.png" );
 
@@ -150,6 +152,10 @@ bool SceneSprites::init(){
 
     this->addChild( link1b, 1 );
 
+    // setup random
+    std::random_device rd;
+    m_gen.seed( rd() );
+
     return true;
 }
 
@@ -214,6 +220,22 @@ void SceneSprites::onKeyReleased( EventKeyboard::KeyCode code, Event* event ){
         glClearColor( 1.0, 1.0, 1.0, 1.0 );
     }
 
+}
+
+//--------------------------------------------------------------------
+void SceneSprites::onMouseUp( Event *event ){
+    std::uniform_real_distribution<> dis( 0.0, 600.0 );
+
+    EventMouse* e = (EventMouse*)event;
+
+    auto bb = m_button1->getBoundingBox();
+
+    if( bb.containsPoint( e->getLocationInView() ) ){
+        auto move = MoveTo::create( 0.2f, { dis(m_gen) + 100.0f, dis(m_gen) } );
+
+        m_button1->stopAllActions();
+        m_button1->runAction( EaseOut::create( move, 2.0f ) );
+    }
 }
 
 //--------------------------------------------------------------------

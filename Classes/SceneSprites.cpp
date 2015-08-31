@@ -92,6 +92,10 @@ bool SceneSprites::init(){
     m_mario3->setPosition( { scr_origin.x + 400.0f,
                 scr_origin.y + 300.0f } );
     m_mario3->setRotation( 50.0f );
+
+    auto coin1 = Sprite::create( "coin01.png" );
+    m_mario3->addChild( coin1 );
+    coin1->setPosition( {0.0f ,50.0f} );
     this->addChild( m_mario3, 1 );
 
     auto link1 = Sprite::create( "link01.png" );

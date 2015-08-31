@@ -2,6 +2,7 @@
 #include <cstdio>
 #include "SceneInput.hpp"
 #include "SceneSprites.hpp"
+#include "SceneBall.hpp"
 
 //--------------------------------------------------------------------
 using namespace cocos2d;
@@ -71,7 +72,7 @@ bool SceneMainMenu::init(){
 
     menu->addChild( menu_item );
 
-    menu_label = Label::createWithTTF( "Test 3", "fonts/gentium.ttf", 48);
+    menu_label = Label::createWithTTF( "Ball", "fonts/gentium.ttf", 48);
     menu_item = MenuItemLabel::create( menu_label,
                                        std::bind( &SceneMainMenu::menu3,
                                                   this, _1 ) );
@@ -81,13 +82,6 @@ bool SceneMainMenu::init(){
     menu_label = Label::createWithTTF( "Test 4", "fonts/gentium.ttf", 48);
     menu_item = MenuItemLabel::create( menu_label,
                                        std::bind( &SceneMainMenu::menu4,
-                                                  this, _1 ) );
-
-    menu->addChild( menu_item );
-
-    menu_label = Label::createWithTTF( "Test 5", "fonts/gentium.ttf", 48);
-    menu_item = MenuItemLabel::create( menu_label,
-                                       std::bind( &SceneMainMenu::menu5,
                                                   this, _1 ) );
 
     menu->addChild( menu_item );
@@ -126,16 +120,14 @@ void SceneMainMenu::menu2( Ref * sender ){
 //--------------------------------------------------------------------
 void SceneMainMenu::menu3( Ref * sender ){
     printf( "SceneMainMenu::menu3\n" );
+
+    auto scene = SceneBall::createScene();
+    Director::getInstance()->pushScene( scene );
 }
 
 //--------------------------------------------------------------------
 void SceneMainMenu::menu4( Ref * sender ){
     printf( "SceneMainMenu::menu4\n" );
-}
-
-//--------------------------------------------------------------------
-void SceneMainMenu::menu5( Ref * sender ){
-    printf( "SceneMainMenu::menu5\n" );
 }
 
 //--------------------------------------------------------------------

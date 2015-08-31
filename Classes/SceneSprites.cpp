@@ -51,6 +51,28 @@ bool SceneSprites::init(){
                                         this, _1, _2 );
     _eventDispatcher->addEventListenerWithSceneGraphPriority( m_keybd, this );
 
+    // create sprites
+    auto button1 = Sprite::create( "button01.png" );
+
+    button1->setPosition( { scr_origin.x + 100.0f,
+                scr_origin.y + 450.0f } );
+
+    this->addChild( button1, 1 );
+
+    auto mario1 = Sprite::create( "mario01.png" );
+
+    mario1->setPosition( { scr_origin.x + 100.0f,
+                scr_origin.y + 300.0f } );
+
+    this->addChild( mario1, 1 );
+
+    auto link1 = Sprite::create( "link01.png" );
+
+    link1->setPosition( { scr_origin.x + 100.0f,
+                scr_origin.y + 150.0f } );
+
+    this->addChild( link1, 1 );
+
     return true;
 }
 

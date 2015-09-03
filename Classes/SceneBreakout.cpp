@@ -63,7 +63,9 @@ void SceneBreakout::onEnter(){
 
 //--------------------------------------------------------------------
 void SceneBreakout::onKeyReleased( EventKeyboard::KeyCode code, Event* event ){
-    printf( "Key pressed\n" );
+    if( code == EventKeyboard::KeyCode::KEY_ESCAPE ){
+        Director::getInstance()->popScene();
+    }
 }
 
 //--------------------------------------------------------------------

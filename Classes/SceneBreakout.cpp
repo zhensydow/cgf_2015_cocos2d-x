@@ -53,6 +53,14 @@ bool SceneBreakout::init(){
                                         this, _1, _2 );
     _eventDispatcher->addEventListenerWithSceneGraphPriority( m_keybd, this );
 
+    // create a background
+    auto bg = Sprite::create( "bg_break.png" );
+
+    bg->setPosition( { scr_origin.x + scr_size.width/2.0f,
+                scr_origin.y + scr_size.height/2.0f } );
+
+    this->addChild( bg, -1 );
+
     // create sprites
     m_bat = Sprite::create( "bat01.png" );
 

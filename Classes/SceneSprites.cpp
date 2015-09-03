@@ -224,7 +224,7 @@ void SceneSprites::onKeyReleased( EventKeyboard::KeyCode code, Event* event ){
 
 //--------------------------------------------------------------------
 void SceneSprites::onMouseUp( Event *event ){
-    std::uniform_real_distribution<> dis( 0.0, 600.0 );
+    std::uniform_real_distribution<float> dis( 0.0, 600.0 );
 
     EventMouse* e = (EventMouse*)event;
 

@@ -68,6 +68,16 @@ bool SceneBreakout::init(){
 
     this->addChild( m_ball, 1 );
 
+    auto offset = (scr_size.width - 400.0f - 32.0f*10) / 2.0f;
+    m_bricks.reserve( 10 );
+    for( int i = 0 ; i < 10 ; ++i ){
+        auto brick = Sprite::create( "brick01.png" );
+        brick->setPosition( { scr_origin.x + 200.0f + offset + 32.0f*i,
+                    scr_origin.y + scr_size.height - 100.0f } );
+        this->addChild( brick, 1 );
+        m_bricks.push_back( brick );
+    }
+
     // setup an update function
     this->schedule( std::bind( &SceneBreakout::update, this, _1 ) , "update" );
 
@@ -164,6 +174,25 @@ void SceneBreakout::update( float delta ){
     }
 
     m_ball->setPosition( ballx, bally );
+
+    // ball -> bat collision
+    auto batBB = m_bat->getBoundingBox();
+    if( batBB.intersectsRect( m_ball->getBoundingBox() ) ){
+        m_dirbally *= -1;
+    }
+
+    // ball -> brick collision
+
+    auto ballBB = m_ball->getBoundingBox();
+    for( auto i = 0u ; i < m_bricks.size() ; ++i ){
+        if( ballBB.intersectsRect( m_bricks[i]->getBoundingBox() ) ){
+            m_bricks[i]->removeFromParent();
+            m_bricks[i] = m_bricks[m_bricks.size()-1];
+            m_bricks.pop_back();
+            m_dirbally *= -1;
+            break;
+        }
+    }
 
 }
 

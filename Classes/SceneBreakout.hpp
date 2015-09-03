@@ -15,14 +15,23 @@ public:
 
     CREATE_FUNC(SceneBreakout);
 
+    void onKeyPressed( cocos2d::EventKeyboard::KeyCode code,
+                       cocos2d::Event* event );
     void onKeyReleased( cocos2d::EventKeyboard::KeyCode code,
                         cocos2d::Event* event );
+
+    void update( float delta );
 
 private:
     cocos2d::EventListenerKeyboard* m_keybd;
 
     cocos2d::Sprite * m_bat;
     cocos2d::Sprite * m_ball;
+
+    int m_bat_move = 0;
+
+    float m_dirballx = 0;
+    float m_dirbally = 0;
 };
 
 

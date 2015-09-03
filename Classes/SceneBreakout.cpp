@@ -51,6 +51,21 @@ bool SceneBreakout::init(){
                                         this, _1, _2 );
     _eventDispatcher->addEventListenerWithSceneGraphPriority( m_keybd, this );
 
+    // create sprites
+    m_bat = Sprite::create( "bat01.png" );
+
+    m_bat->setPosition( { scr_origin.x + scr_size.width / 2.0f,
+                scr_origin.y + 100.0f } );
+
+    this->addChild( m_bat, 1 );
+
+    m_ball = Sprite::create( "miniball01.png" );
+
+    m_ball->setPosition( { scr_origin.x + scr_size.width / 2.0f,
+                scr_origin.y + scr_size.height / 2.0f } );
+
+    this->addChild( m_ball, 1 );
+
     return true;
 }
 

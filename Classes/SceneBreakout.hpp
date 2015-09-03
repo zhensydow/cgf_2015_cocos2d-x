@@ -20,6 +20,9 @@ public:
 
 private:
     cocos2d::EventListenerKeyboard* m_keybd;
+
+    cocos2d::Sprite * m_bat;
+    cocos2d::Sprite * m_ball;
 };
 
 
